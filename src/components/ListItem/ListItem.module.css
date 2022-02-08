@@ -1,0 +1,11 @@
+.listItem {
+  @apply m-2 flex h-full items-center cursor-pointer;
+}
+
+p.complete {
+  @apply line-through;
+}
+
+p.incomplete {
+  @apply hover:font-light;
+}

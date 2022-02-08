@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useReducer, useEffect, useRef } from "react";
+import { appReducer } from "./context/state";
+import Layout from "./components/Layout";
+import { ContextWrapper } from "./context/state";
 
-function App() {
+export default function ToDosApp() {
+  const [{ state }, dispatch] = useReducer(appReducer, { state: [] });
+  const didMount = useRef(false);
+
+  useEffect(() => {
+    if (!didMount.current) {
+      const rawData = localStorage.getItem("data");
+      dispatch({ type: "RESET", payload: JSON.parse(rawData) });
+      didMount.current = true;
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(state));
+  }, [state]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextWrapper dispatch={dispatch}>
+      <Layout state={state} dispatch={dispatch} />
+    </ContextWrapper>
   );
 }
-
-export default App;
