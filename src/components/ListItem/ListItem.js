@@ -23,6 +23,12 @@ export default function ListItem({ item }) {
       <p className={item?.completed ? styles.complete : styles.incomplete}>
         {item?.text}
       </p>
+      <button
+        className={styles.delete}
+        onClick={() => dispatch({ type: "DELETE", payload: { id: item?.id } })}
+      >
+        delete
+      </button>
     </li>
   );
 }

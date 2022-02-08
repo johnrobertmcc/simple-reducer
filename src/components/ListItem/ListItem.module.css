@@ -1,5 +1,5 @@
 .listItem {
-  @apply m-2 flex h-full items-center cursor-pointer;
+  @apply m-2 flex h-full items-center cursor-pointer justify-between w-36;
 }
 
 p.complete {
@@ -8,4 +8,8 @@ p.complete {
 
 p.incomplete {
   @apply hover:font-light;
+}
+
+.delete {
+  @apply p-1 border border-black;
 }

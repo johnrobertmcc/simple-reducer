@@ -32,6 +32,13 @@ export function appReducer(state, action) {
     case "RESET":
       return { state: action?.payload };
 
+    case "DELETE":
+      return {
+        state: [
+          ...state.state.filter((item) => item?.id !== action?.payload?.id),
+        ],
+      };
+
     default:
       return state;
   }
