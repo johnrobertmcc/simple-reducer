@@ -30,9 +30,9 @@ export default function Layout({ state }) {
           placeholder="add to-do here"
         />
       </form>
-      <p className={styles.instructions}>(click item to mark complete)</p>
-      {state && (
+      {!!state.length && (
         <ul>
+          <p className={styles.instructions}>(click item to mark complete)</p>
           {state.map((item, i) => {
             return <ListItem item={item} key={i} />;
           })}
